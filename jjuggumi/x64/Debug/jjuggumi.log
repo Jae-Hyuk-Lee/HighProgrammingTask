@@ -1,0 +1,7 @@
+﻿  canvas.c
+  jjuggumi.c
+C:\Users\이재혁\OneDrive\바탕 화면\jjuggumi_v0\jjuggumi.c(42,6): warning C4101: 'ADDS' :참조되지 않은 지역 변수입니다.
+  keyin.c
+  sample.c
+  코드를 생성하고 있습니다...
+  jjuggumi.vcxproj -> C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
