@@ -9,7 +9,7 @@ bool is_valid(key_t key) {
 		K_UP,
 		K_DOWN,
 		K_LEFT,
-		K_RIGHT,		
+		K_RIGHT,
 		K_QUIT
 	};
 
@@ -18,7 +18,9 @@ bool is_valid(key_t key) {
 			return true;
 		}
 	}
+
 	return false;
+
 }
 
 // 키보드에서 입력 받은 키가 무슨 키인지 구분해서 리턴

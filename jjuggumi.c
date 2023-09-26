@@ -30,8 +30,8 @@ int jjuggumi_init(void) {
 
 int main(void) {
 	jjuggumi_init();
-	sample();
-	//mugunghwa();
+	//sample();
+	mugunghwa();
 	//nightgame();
 	//juldarigi();
 	//jebi();
