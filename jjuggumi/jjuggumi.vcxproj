@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\canvas.c" />
+    <ClCompile Include="..\jjuggumi.c" />
+    <ClCompile Include="..\keyin.c" />
+    <ClCompile Include="..\sample.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\canvas.h" />
+    <ClInclude Include="..\jjuggumi.h" />
+    <ClInclude Include="..\keyin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\jjuggumi.dat" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,20 +140,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\canvas.c" />
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\jjuggumi.c" />
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\keyin.c" />
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\sample.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\바탕 화면\jjuggumi_v0\canvas.h" />
-    <ClInclude Include="..\..\..\..\바탕 화면\jjuggumi_v0\jjuggumi.h" />
-    <ClInclude Include="..\..\..\..\바탕 화면\jjuggumi_v0\keyin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\바탕 화면\jjuggumi_v0\jjuggumi.dat" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

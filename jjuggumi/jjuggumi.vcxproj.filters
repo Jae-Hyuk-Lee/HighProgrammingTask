@@ -15,32 +15,32 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\canvas.c">
+    <ClCompile Include="..\canvas.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\jjuggumi.c">
+    <ClCompile Include="..\jjuggumi.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\keyin.c">
+    <ClCompile Include="..\keyin.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\바탕 화면\jjuggumi_v0\sample.c">
+    <ClCompile Include="..\sample.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\바탕 화면\jjuggumi_v0\canvas.h">
+    <ClInclude Include="..\canvas.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\바탕 화면\jjuggumi_v0\jjuggumi.h">
+    <ClInclude Include="..\jjuggumi.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\바탕 화면\jjuggumi_v0\keyin.h">
+    <ClInclude Include="..\keyin.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\바탕 화면\jjuggumi_v0\jjuggumi.dat">
+    <None Include="..\jjuggumi.dat">
       <Filter>소스 파일</Filter>
     </None>
   </ItemGroup>
