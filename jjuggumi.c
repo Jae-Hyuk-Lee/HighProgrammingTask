@@ -17,6 +17,7 @@ int randint(int low, int high) {
 
 int jjuggumi_init(void) {
 	srand((unsigned int)time(NULL));
+	char msg1[50];
 
 	printf("플레이어 수: ");
 	scanf_s("%d", &n_player);
@@ -31,12 +32,17 @@ int jjuggumi_init(void) {
 int main(void) {
 	jjuggumi_init();
 	sample();
+
+
+	jebi();
+	
+	
 	//mugunghwa();
 	//nightgame();
 	//juldarigi();
 	//jebi();
+	printf(n_alive);
 	return 0;
 
-
-	int asdf;
 }
+

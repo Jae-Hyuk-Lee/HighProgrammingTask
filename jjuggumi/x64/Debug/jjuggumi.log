@@ -1,7 +1,2 @@
-﻿  canvas.c
-  jjuggumi.c
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\jjuggumi.c(41,6): warning C4101: 'asdf' :참조되지 않은 지역 변수입니다.
-  keyin.c
-  sample.c
-  코드를 생성하고 있습니다...
-  jjuggumi.vcxproj -> C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
+﻿  jebi.c
+  jjuggumi.vcxproj -> C:\Users\PC\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe

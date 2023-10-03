@@ -3,8 +3,12 @@
 #include <Windows.h>
 #include "jjuggumi.h"
 #include "canvas.h"
+#include <Windows.h>
 
-#define DIALOG_DURATION_SEC		4
+
+#define DIALOG_DURATION_SEC 1
+int CURRENT_MAP_SIZE_ROW;
+int CURRENT_MAP_SIZE_COL;
 
 void draw(void);
 void print_status(void);
@@ -22,6 +26,8 @@ void printxy(char ch, int row, int col) {
 }
 
 void map_init(int n_row, int n_col) {
+	CURRENT_MAP_SIZE_ROW = n_row;
+	CURRENT_MAP_SIZE_COL = n_col;
 	// 두 버퍼를를 완전히 비우기
 	for (int i = 0; i < ROW_MAX; i++) {
 		for (int j = 0; j < COL_MAX; j++) {
@@ -54,7 +60,7 @@ bool placable(int row, int col) {
 // 상단에 맵을, 하단에는 현재 상태를 출력
 void display(void) {
 	draw();
-	gotoxy(N_ROW + 4, 0);  // 추가로 표시할 정보가 있으면 맵과 상태창 사이의 빈 공간에 출력
+	gotoxy(N_ROW + 3, 0);  // 추가로 표시할 정보가 있으면 맵과 상태창 사이의 빈 공간에 출력
 	print_status();
 }
 
@@ -75,7 +81,42 @@ void print_status(void) {
 		printf("player %2d: %5s\n", p, player[p] ? "alive" : "DEAD");		
 	}
 }
-
+// dialog("메세지");
 void dialog(char message[]) {
+	int mlength = strlen(message) + 6;
+	int n = DIALOG_DURATION_SEC;
+	//다이얼로그 텍스트 출력 기준점
+	int dialog_col = CURRENT_MAP_SIZE_ROW/5;
+	int dialog_row = 3; 
 
+	while (1) {
+		if (n==0) {
+			system("cls");
+
+			//맵 복구 back_buf 사용
+			for (int row = 0; row < N_ROW; row++) {
+				for (int col = 0; col < N_COL; col++) {
+					printxy(back_buf[row][col], row, col);
+				}
+			}
+			break;
+		}
+		else {
+
+			gotoxy(dialog_col , dialog_row);
+			for (int i = 0; i < mlength; i++) {
+				printf("*");
+			}
+			gotoxy(dialog_col+1, dialog_row);
+			printf("* %d %s *",n, message);
+			gotoxy(dialog_col+2, dialog_row);
+			for (int i = 0; i < mlength; i++) {
+				printf("*");
+			}
+		}
+		
+		Sleep(1000);
+		n -= 1;
+		
+	}
 }
