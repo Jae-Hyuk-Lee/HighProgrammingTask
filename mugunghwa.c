@@ -3,18 +3,18 @@
 void mugunghwa_init(void) 
 {
 
-    mugunghwa_map_init(9, 60);
+    mugunghwa_map_init(10, 60);
     int x, y;
-    int summony = 2;
+    int summonx = 2;
 
     for (int i = 0; i < n_player; i++) {
         // 같은 자리가 나오면 다시 생성
 
         do {
-            x = summony;
+            x = summonx;
             y = 58;
 
-            summony++;
+            summonx++;
 
         } while (!placable(x, y));
         px[i] = x;
@@ -28,12 +28,18 @@ void mugunghwa_init(void)
 
 }
 
-void mugunghwa(void) {
+void mugunghwa(void) 
+{
     mugunghwa_init();
 
     system("cls");
     display();
+
+    int fisrtTick = 0;
+    int tickCount = 0;
+
     while (1) {
+
         // player 0만 손으로 움직임(4방향)
         key_t key = get_key();
         if (key == K_QUIT) {
@@ -50,8 +56,11 @@ void mugunghwa(void) {
             }
         }
 
+        Print_Mugunghwa(&fisrtTick, &tickCount);
         display();
         Sleep(10);
+
         tick += 10;
+
     }
 }

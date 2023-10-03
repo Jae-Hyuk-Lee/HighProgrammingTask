@@ -16,7 +16,7 @@ void move_manual_mugunghwa(key_t key);
 void move_random_mugunghwa(int player, int dir);
 void mugunghwa_map_init(int n_row, int n_col);
 void move_tail_mugunghwa(int player, int nx, int ny);
-int randint_mugunghwa();
+int Ai_randint_mugunghwa();
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
 
@@ -61,12 +61,13 @@ void mugunghwa_map_init(int n_row, int n_col)
         back_buf[i][0] = back_buf[i][N_COL - 1] = '*';
 
         for (int j = 1; j < N_COL - 1; j++) {
+            back_buf[i][1] = (2 < i && i < 6) ? '#' : ' ';
             back_buf[i][j] = (i == 0 || i == N_ROW - 1) ? '*' : ' ';
         }
     }
 }
 
-int randint_mugunghwa()
+int Ai_randint_mugunghwa()
 {
     int randomValue = rand() % 100;
 
@@ -77,13 +78,13 @@ int randint_mugunghwa()
         return DIR_UP; // 위쪽
     }
     else if (randomValue < 90) {
-        return DIR_RIGHT; // 아래쪽
+        return DIR_DOWN; // 아래쪽
     }
     else {
         return DIR_STAY; // 제자리
     }
 
-    return 0;
+    return randomValue;
 }
 
 void move_tail_mugunghwa(int player, int nx, int ny) {
@@ -94,7 +95,51 @@ void move_tail_mugunghwa(int player, int nx, int ny) {
     py[p] = ny;
 }
 
-// 0 <= dir < 4가 아니면 랜덤
+void Print_Mugunghwa(int* firstTick, int *count)
+{
+    printf("d");
+    char mugunghwa[] = "무궁화꽃이 피었습니다";
+    if ((*firstTick + 200) == tick)
+    {
+        //느리게
+        if (*count <= 11)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                //버퍼 위치 정리
+                back_buf[N_ROW - 1][*count] = mugunghwa[*count];
+                *count += 1;
+            }
+            *firstTick += 200;
+        }
+
+
+        //빠르게
+        else if (*count > 11)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                back_buf[N_ROW - 1][*count] = mugunghwa[*count];
+                *count += 1;
+            }
+            *firstTick += 180;
+        }
+
+        else if (*count == sizeof(mugunghwa))
+        {
+            //써내려간 무궁화 없애기 정리
+
+            //for (int i = 0; i < *count; i++)
+            //{
+            //    back_buf[N_ROW + 3][*count] = ' ';
+            //}
+            *count = 0;
+            *firstTick += 220;
+        }
+
+    }
+
+}
 
 
 void move_random_mugunghwa(int player, int dir) {
@@ -102,10 +147,12 @@ void move_random_mugunghwa(int player, int dir) {
     int nx = 0 , ny = 0 ;  // 움직여서 다음에 놓일 자리
     // 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)	
 
-    int ndir = randint_mugunghwa();
+    
     //randint_mugunghwa위 함수에서 0을 70%, 1을 10%, 2를 10%, 3을 10%로 조정.
 
     do {
+        int ndir = Ai_randint_mugunghwa();
+
         switch (ndir)
         {
 
@@ -138,8 +185,3 @@ void move_random_mugunghwa(int player, int dir) {
 
     move_tail_mugunghwa(p, nx, ny);
 }
-
-
-
-
-// back_buf[][]에 기록

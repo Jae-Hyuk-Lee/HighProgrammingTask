@@ -18,7 +18,7 @@ void gotoxy(int row, int col) {
 // row행, col열에 ch 출력
 void printxy(char ch, int row, int col) {
 	gotoxy(row, col);
-	printf("%c", ch);
+    printf("%c", ch);
 }
 
 void map_init(int n_row, int n_col) {
@@ -31,7 +31,7 @@ void map_init(int n_row, int n_col) {
 
 	N_ROW = n_row;
 	N_COL = n_col;
-	for (int i = 0; i < N_ROW; i++) {
+	for (int i = 0; i < (N_ROW -1); i++) {
 		// 대입문 이렇게 쓸 수 있는데 일부러 안 가르쳐줬음
 		back_buf[i][0] = back_buf[i][N_COL - 1] = '#';
 

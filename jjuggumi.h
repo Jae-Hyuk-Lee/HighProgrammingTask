@@ -3,6 +3,7 @@
 
 #include <Windows.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define PLAYER_MAX		10
 
