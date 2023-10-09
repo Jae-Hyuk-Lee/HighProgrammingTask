@@ -12,15 +12,15 @@
 #define DIR_STAY    4
 
 
-void move_manual_mugunghwa(key_t key);
-void move_random_mugunghwa(int player, int dir);
+void move_manual_mugunghwa(key_t key, bool moveType);
+void move_random_mugunghwa(int player, int dir, bool moveType);
 void mugunghwa_map_init(int n_row, int n_col);
-void move_tail_mugunghwa(int player, int nx, int ny);
+void move_tail_mugunghwa(int player, int nx, int ny, bool moveType);
 int Ai_randint_mugunghwa();
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
-
-void move_manual_mugunghwa(key_t key) {
+bool pmove[PLAYER_MAX]; //카메라 돌렸을때 움직임 체크 
+void move_manual_mugunghwa(key_t key, bool moveType) {
     // 각 방향으로 움직일 때 x, y값 delta
     static int dx[4] = { -1, 1, 0, 0 };
     static int dy[4] = { 0, 0, -1, 1 };
@@ -38,11 +38,13 @@ void move_manual_mugunghwa(key_t key) {
     int nx, ny;
     nx = px[0] + dx[dir];
     ny = py[0] + dy[dir];
+    
     if (!placable(nx, ny)) {
         return;
     }
 
-    move_tail_mugunghwa(0, nx, ny);
+
+    move_tail_mugunghwa(0, nx, ny, moveType);
 }
 
 void mugunghwa_map_init(int n_row, int n_col)
@@ -54,16 +56,40 @@ void mugunghwa_map_init(int n_row, int n_col)
         }
     }
 
+    //N_ROW = n_row;
+    //N_COL = n_col;
+    //for (int i = 0; i < (N_ROW - 1); i++) {
+    //    // 대입문 이렇게 쓸 수 있는데 일부러 안 가르쳐줬음
+    //    back_buf[i][0] = back_buf[i][N_COL - 1] = '#';
+
+    //    for (int j = 1; j < N_COL - 1; j++) {
+    //        back_buf[i][j] = (i == 0 || i == N_ROW - 1) ? '#' : ' ';
+    //    }
+    //}
+
+
     N_ROW = n_row;
     N_COL = n_col;
-    for (int i = 0; i < N_ROW; i++) {
+    for (int i = 0; i < (N_ROW - 1); i++) {
+
+        for (int j = 1; j < N_COL; j++) {
+                if (back_buf[i][1] = (2 < i && i < 6))
+                {
+                    back_buf[i][1] = '#';
+                }
+
+                else
+                {
+                    back_buf[i][1] = ' ';
+                }
+                back_buf[i][j] = (i == 0 || i == N_ROW - 2) ? '*' : ' ';
+        }
+        back_buf[0][1] = '*';
+        back_buf[N_ROW - 2][1] = '*';
+
         // 대입문 이렇게 쓸 수 있는데 일부러 안 가르쳐줬음
         back_buf[i][0] = back_buf[i][N_COL - 1] = '*';
 
-        for (int j = 1; j < N_COL - 1; j++) {
-            back_buf[i][1] = (2 < i && i < 6) ? '#' : ' ';
-            back_buf[i][j] = (i == 0 || i == N_ROW - 1) ? '*' : ' ';
-        }
     }
 }
 
@@ -87,71 +113,141 @@ int Ai_randint_mugunghwa()
     return randomValue;
 }
 
-void move_tail_mugunghwa(int player, int nx, int ny) {
+void move_tail_mugunghwa(int player, int nx, int ny, bool moveType) {
     int p = player;  // 이름이 길어서...
     back_buf[nx][ny] = back_buf[px[p]][py[p]];
     back_buf[px[p]][py[p]] = ' ';
     px[p] = nx;
     py[p] = ny;
+
+    if (moveType == true) pmove[p] = true;
 }
 
-void Print_Mugunghwa(int* firstTick, int *count)
+void Print_Mugunghwa(int* firstTick, int *count, bool *moveType)
 {
     printf("d");
-    char mugunghwa[] = "무궁화꽃이 피었습니다";
-    if ((*firstTick + 200) == tick)
+    char mugunghwa[] = "무궁화꽃이피었습니다";
+
+    if (*count >= sizeof(mugunghwa))
+    {
+        *moveType = true;
+        //3초 기다리기
+        if ((*firstTick + 3000) == tick)
+        {
+            for (int i = 0; i < *count; i++)
+            {
+                back_buf[N_ROW - 1][i] = ' ';
+            }
+            *count = 0;
+            *firstTick += 3000;
+
+            //카메라 원상복구
+            for (int i = 0; i < N_COL; i++)
+            {
+                if (back_buf[i][1] = (2 < i && i < 6))
+                {
+                    back_buf[i][1] = '#';
+                }
+
+                else
+                {
+                    back_buf[i][1] = ' ';
+                }
+            }
+            back_buf[0][1] = '*';
+            back_buf[N_ROW - 2][1] = '*';
+
+
+            //움직인 플레이어 탈락
+            //dialog()
+            for (int i = 0; i < PLAYER_MAX; i++)
+            {
+                if (pmove[i] == true)
+                {
+                    player[i] = false;
+                    back_buf[px[i]][py[i]] = ' ';
+                }
+            }
+
+            
+            return;
+        }
+
+        //카메라 변경
+        for (int i = 0; i < N_COL; i++)
+        {
+            if (back_buf[i][1] = (2 < i && i < 6))
+            {
+                back_buf[i][1] = '@';
+            }
+
+            else
+            {
+                back_buf[i][1] = ' ';
+            }
+        }
+        back_buf[0][1] = '*';
+        back_buf[N_ROW - 2][1] = '*';
+    }
+        
+    if ((*firstTick + 600) == tick)
     {
         //느리게
         if (*count <= 11)
         {
+            *moveType = false;
+
             for (int i = 0; i < 2; i++)
             {
                 //버퍼 위치 정리
                 back_buf[N_ROW - 1][*count] = mugunghwa[*count];
                 *count += 1;
             }
-            *firstTick += 200;
+            *firstTick += 300;
         }
 
+        else if (*count >= sizeof(mugunghwa))
+        {
+
+        }
 
         //빠르게
         else if (*count > 11)
         {
+            *moveType = false;
+
             for (int i = 0; i < 2; i++)
             {
                 back_buf[N_ROW - 1][*count] = mugunghwa[*count];
                 *count += 1;
             }
-            *firstTick += 180;
+            *firstTick += 100;
         }
 
-        else if (*count == sizeof(mugunghwa))
-        {
-            //써내려간 무궁화 없애기 정리
-
-            //for (int i = 0; i < *count; i++)
-            //{
-            //    back_buf[N_ROW + 3][*count] = ' ';
-            //}
-            *count = 0;
-            *firstTick += 220;
-        }
 
     }
 
 }
 
-
-void move_random_mugunghwa(int player, int dir) {
+void move_random_mugunghwa(int player, int dir, bool moveType) {
     int p = player;  // 이름이 길어서...
-    int nx = 0 , ny = 0 ;  // 움직여서 다음에 놓일 자리
+    int nx = 0, ny = 0;  // 움직여서 다음에 놓일 자리
     // 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)	
 
-    
-    //randint_mugunghwa위 함수에서 0을 70%, 1을 10%, 2를 10%, 3을 10%로 조정.
+    //move_random_mugunghwa위 함수에서 움직임 확률 10% 추가
 
     do {
         int ndir = Ai_randint_mugunghwa();
+
+        if (moveType == true)
+        {
+            int rMove = rand() % 100;
+
+            if (rMove < 90)
+            {
+                return;
+            }
+        }
 
         switch (ndir)
         {
@@ -181,7 +277,10 @@ void move_random_mugunghwa(int player, int dir) {
             break;
 
         }
+
     } while (!placable(nx, ny));
 
-    move_tail_mugunghwa(p, nx, ny);
+    //해당 플레이어가 움직였다고 체크
+
+    move_tail_mugunghwa(p, nx, ny, moveType);
 }
