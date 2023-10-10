@@ -13,6 +13,7 @@
 #define K_LEFT		75
 #define K_RIGHT		77
 #define K_QUIT		'q'
+#define K_DIALOG	'd'
 #define K_UNDEFINED	'\0'
 
 typedef int key_t;

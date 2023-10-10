@@ -9,8 +9,9 @@ bool is_valid(key_t key) {
 		K_UP,
 		K_DOWN,
 		K_LEFT,
-		K_RIGHT,		
-		K_QUIT
+		K_RIGHT,
+		K_QUIT,
+		K_DIALOG
 	};
 
 	for (int i = 0; i < N_KEY; i++) {
@@ -34,7 +35,8 @@ key_t get_key(void) {
 
 	if (is_valid(key)) {
 		return key;
-	} else {
+	}
+	else {
 		return K_UNDEFINED;
-	}	
+	}
 }
