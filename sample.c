@@ -44,7 +44,7 @@ void move_manual(key_t key) {
 	case K_UP: dir = DIR_UP; break;
 	case K_DOWN: dir = DIR_DOWN; break;
 	case K_LEFT: dir = DIR_LEFT; break;
-	case K_RIGHT: dir = DIR_RIGHT; break;	
+	case K_RIGHT: dir = DIR_RIGHT; break;
 	default: return;
 	}
 
@@ -94,6 +94,9 @@ void sample(void) {
 		if (key == K_QUIT) {
 			break;
 		}
+		else if (key == K_DIALOG) {
+			dialog("sec left.");
+		}
 		else if (key != K_UNDEFINED) {
 			move_manual(key);
 		}
@@ -105,7 +108,7 @@ void sample(void) {
 			}
 		}
 
-		display();
+		//display();
 		Sleep(10);
 		tick += 10;
 	}
