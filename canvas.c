@@ -76,28 +76,28 @@ void print_status(void) {
 	}
 }
 
-void dialog(char message[]) {
-	char msg[11];
+void dialog(char message[], const int messageSize) {
+    char msg[60] = {0};
 
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i != messageSize; i++)
 		msg[i] = message[i];
 
 	for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
 		gotoxy(4, 4);
-		printf("****************\n");
+		printf("******************************\n");
 		gotoxy(5, 4);
 		printf("*%d %s *\n", i, msg);
 		gotoxy(6, 4);
-		printf("****************");
+		printf("******************************");
 		Sleep(1000);
 	}
 	for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
 		gotoxy(4, 4);
-		printf("                \n");
+		printf("                               \n");
 		gotoxy(5, 4);
-		printf("                \n");
+		printf("                               \n");
 		gotoxy(6, 4);
-		printf("                \n");
+		printf("                               \n");
 	}
 	draw();
 }

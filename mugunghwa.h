@@ -4,6 +4,7 @@
 #include "canvas.h"
 #include "keyin.h"
 #include <stdio.h>
+#include <string.h>
 
 #define DIR_UP		0
 #define DIR_DOWN	1
@@ -16,6 +17,7 @@ void move_manual_mugunghwa(key_t key, bool moveType);
 void move_random_mugunghwa(int player, int dir, bool moveType);
 void mugunghwa_map_init(int n_row, int n_col);
 void move_tail_mugunghwa(int player, int nx, int ny, bool moveType);
+void Print_Mugunghwa(int* firstTick, int* count, bool* moveType, int* deadPlayerArray, char* dialogarray, bool* dialogonoff);
 int Ai_randint_mugunghwa();
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
@@ -121,11 +123,11 @@ void move_tail_mugunghwa(int player, int nx, int ny, bool moveType) {
     py[p] = ny;
 
     if (moveType == true) pmove[p] = true;
+
 }
 
-void Print_Mugunghwa(int* firstTick, int *count, bool *moveType)
+void Print_Mugunghwa(int* firstTick, int *count, bool *moveType, int *deadPlayerArray, char *dialogarray, bool* dialogonoff)
 {
-    printf("d");
     char mugunghwa[] = "무궁화꽃이피었습니다";
 
     if (*count >= sizeof(mugunghwa))
@@ -160,6 +162,25 @@ void Print_Mugunghwa(int* firstTick, int *count, bool *moveType)
 
             //움직인 플레이어 탈락
             //dialog()
+            for (int i = 0; i < n_player; i++)
+            {
+                int len = strlen(dialogarray);
+
+                if (pmove[i] == true)
+                {
+                    deadPlayerArray[i] += i;
+                    dialogarray[len] = deadPlayerArray[i] + '0';
+                    *dialogonoff = true;
+                }
+            }
+
+            if (*dialogonoff)
+            {
+                dialog(dialogarray, 30);
+                *dialogonoff = false;
+            }
+
+
             for (int i = 0; i < PLAYER_MAX; i++)
             {
                 if (pmove[i] == true)
@@ -169,7 +190,18 @@ void Print_Mugunghwa(int* firstTick, int *count, bool *moveType)
                 }
             }
 
-            
+            for (int i = 0; i < n_player; i++)
+            {
+                pmove[i] = false;
+            }
+
+            *dialogarray = " ";
+
+            for (int i = 0; i < PLAYER_MAX; i++)
+            {
+                deadPlayerArray[i] = 0;
+            }
+
             return;
         }
 
@@ -235,7 +267,6 @@ void move_random_mugunghwa(int player, int dir, bool moveType) {
     // 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)	
 
     //move_random_mugunghwa위 함수에서 움직임 확률 10% 추가
-
     do {
         int ndir = Ai_randint_mugunghwa();
 
@@ -283,4 +314,38 @@ void move_random_mugunghwa(int player, int dir, bool moveType) {
     //해당 플레이어가 움직였다고 체크
 
     move_tail_mugunghwa(p, nx, ny, moveType);
+}
+
+void playerPointCheck()
+{
+    for (int i = 0; i < n_player; i++)
+    {
+        if (px[i] == 2 && py[i] == 1)
+        {
+
+        }
+        else if (px[i] == 3 && py[i] == 2)
+        {
+
+        }
+        else if (px[i] == 4 && py[i] == 2)
+        {
+
+        }
+        else if (px[i] == 5 && py[i] == 2)
+        {
+
+        }
+        else if (px[i] == 6 && py[i] == 1)
+        {
+
+        }
+
+        else
+        {
+            player[i] = false;
+            back_buf[px[i]][py[i]] = ' ';
+        }
+
+    }
 }

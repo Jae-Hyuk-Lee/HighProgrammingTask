@@ -41,8 +41,12 @@ void mugunghwa(void)
     //3초간 멈추는 시간대에 true로 바뀜.
     bool moveType = false;
 
-    while (1) {
 
+    int deadPlayerArray[PLAYER_MAX] = { 0 };
+    bool dialogonoff = false;
+
+    while (1) {
+        char dialogarray[30] = { "player dead! : " };
         // player 0만 손으로 움직임(4방향)
         key_t key = get_key();
         if (key == K_QUIT) {
@@ -54,20 +58,51 @@ void mugunghwa(void)
 
         for (int i = 1; i < n_player; i++)
         {
-            if (tick % period[i] == 0) {
+            if (tick % period[i] == 0 && player[i]) {
                 move_random_mugunghwa(i, -1, moveType);
             }
         }
+        
+        //for (int i = 0; i < n_player; i++)
+        //{
+        //    if (pmove[i] == true)
+        //    {
+        //        deadPlayerArray[i] += i;
+        //        dialogarray[len] = deadPlayerArray[i] + '0';
+        //        dialogonoff = true;
+        //    }
+        //}
 
-        Print_Mugunghwa(&fisrtTick, &tickCount, &moveType);
-        //CheakPlayerAlive()
-        // 1명만 남을 경우 바로 게임 종료 dialog띄우기
-        // 탈락한 플레이어 띄워주기. 1명 1명 다 띄워줘야 하므로
-        // playercount int 생성. 생성해서 죽은 플레이어 갯수만큼 띄워주기
+        //if (dialogonoff)
+        //{
+        //    dialog(dialogarray, 30);
+        //    dialogonoff = false;
+        //}
+
+        //for (int i = 0; i < n_player; i++)
+        //{
+        //    pmove[i] = false;
+        //}
+
+        Print_Mugunghwa(&fisrtTick, &tickCount, &moveType, deadPlayerArray, dialogarray, &dialogonoff);
+
         display();
         Sleep(10);
 
         tick += 10;
 
+        if (tick == 30000)
+        {
+            //영희 옆에 없는 애들은 다 죽음
+            playerPointCheck();
+            ending();
+            return;
+        }
+
+        if (n_alive == 1) {
+            ending1();
+            ending2();
+            return;
+        }
     }
 }
