@@ -114,7 +114,7 @@ void ending2() {
 void ending3() {
 	system("cls");
 	printf("=========================================================================\n\n");
-	printf("우승자를 가리지 못했습니다.\n생존자는 ");
+	printf("제한시간이 다 되었습니다.\n생존자는 ");
 	for (int i = 0; i < n_player; i++) {
 		if (player[i]) {
 			printf("%d번 ", i);
@@ -138,8 +138,9 @@ void ending() {
 
 int main(void) {
 	jjuggumi_init();
+	//sample();
 	intro();
-	sample();
+	mugunghwa();
 	//mugunghwa();
 	//nightgame();
 	//juldarigi();

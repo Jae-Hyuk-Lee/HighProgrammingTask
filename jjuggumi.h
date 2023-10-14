@@ -3,6 +3,7 @@
 
 #include <Windows.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define PLAYER_MAX		10
 
@@ -12,7 +13,7 @@ int tick;  // 시계
 
 // 미니게임
 void sample(void);
-//void mugunghwa(void);
+void mugunghwa(void);
 //void mugunghwa(void);
 //void nightgame(void);
 //void juldarigi(void);

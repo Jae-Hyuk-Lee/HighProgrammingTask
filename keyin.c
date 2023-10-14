@@ -19,7 +19,9 @@ bool is_valid(key_t key) {
 			return true;
 		}
 	}
+
 	return false;
+
 }
 
 // 키보드에서 입력 받은 키가 무슨 키인지 구분해서 리턴
@@ -38,5 +40,5 @@ key_t get_key(void) {
 	}
 	else {
 		return K_UNDEFINED;
-	}
+	}	
 }

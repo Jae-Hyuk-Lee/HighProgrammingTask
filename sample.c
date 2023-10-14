@@ -95,7 +95,7 @@ void sample(void) {
 			break;
 		}
 		else if (key == K_DIALOG) {
-			dialog("sec left.");
+			dialog("sec left.", 10);
 		}
 		else if (key != K_UNDEFINED) {
 			move_manual(key);
