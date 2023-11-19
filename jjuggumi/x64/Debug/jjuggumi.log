@@ -1,7 +1,2 @@
-﻿  mugunghwa.c
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\mugunghwa.h(198,31): warning C4047: '=': 'char'의 간접 참조 수준이 'char [2]'과(와) 다릅니다.
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\mugunghwa.h(167,27): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\mugunghwa.c(98,13): warning C4013: 'ending'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\mugunghwa.c(103,13): warning C4013: 'ending1'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\mugunghwa.c(104,13): warning C4013: 'ending2'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+﻿  jjuggumi.c
   jjuggumi.vcxproj -> C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
