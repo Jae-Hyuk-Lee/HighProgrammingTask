@@ -30,6 +30,9 @@
     <ClCompile Include="..\mugunghwa.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="..\juldarigi.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jjuggumi.h">
@@ -42,6 +45,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\mugunghwa.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\juldarigi.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

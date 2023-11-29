@@ -58,31 +58,10 @@ void mugunghwa(void)
 
         for (int i = 1; i < n_player; i++)
         {
-            if (tick % period[i] == 0 && player[i]) {
+            if (tick % period[i] == 0 && player[i].is_alive) {
                 move_random_mugunghwa(i, -1, moveType);
             }
         }
-        
-        //for (int i = 0; i < n_player; i++)
-        //{
-        //    if (pmove[i] == true)
-        //    {
-        //        deadPlayerArray[i] += i;
-        //        dialogarray[len] = deadPlayerArray[i] + '0';
-        //        dialogonoff = true;
-        //    }
-        //}
-
-        //if (dialogonoff)
-        //{
-        //    dialog(dialogarray, 30);
-        //    dialogonoff = false;
-        //}
-
-        //for (int i = 0; i < n_player; i++)
-        //{
-        //    pmove[i] = false;
-        //}
 
         Print_Mugunghwa(&fisrtTick, &tickCount, &moveType, deadPlayerArray, dialogarray, &dialogonoff);
 
@@ -95,13 +74,21 @@ void mugunghwa(void)
         {
             //¿µÈñ ¿·¿¡ ¾ø´Â ¾ÖµéÀº ´Ù Á×À½
             playerPointCheck();
-            ending();
             return;
         }
 
-        if (n_alive == 1) {
-            ending1();
-            ending2();
+        int count = 0;
+
+        for (int i = 0; i < n_player; i++)
+        {
+            if (player[i].is_alive == true)
+            {
+                count++;
+            }
+        }
+
+        if (count == 1) {
+            playerPointCheck();
             return;
         }
     }
