@@ -70,9 +70,19 @@ void draw(void) {
 }
 
 void print_status(void) {
-	printf("no. of players left: %d\n", n_alive);
+    int count = 0;
+
+    for (int i = 0; i < n_player; i++)
+    {
+        if (player[i].is_alive == true)
+        {
+            count++;
+        }
+    }
+
+	printf("no. of players left: %d\n", count);
 	for (int p = 0; p < n_player; p++) {
-		printf("player %2d: %5s\n", p, player[p] ? "alive" : "DEAD");
+		printf("player %2d: %5s\n", p, player[p].is_alive ? "alive" : "DEAD");
 	}
 }
 
@@ -100,4 +110,30 @@ void dialog(char message[], const int messageSize) {
 		printf("                               \n");
 	}
 	draw();
+}
+
+void dialog2(char message[], const int messageSize) {
+    char msg[60] = { 0 };
+
+    for (int i = 0; i != messageSize; i++)
+        msg[i] = message[i];
+
+    for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+        gotoxy(3, 0);
+        printf("******************************\n");
+        gotoxy(4, 0);
+        printf("*%d %s *\n", i, msg);
+        gotoxy(5, 0);
+        printf("******************************");
+        Sleep(1000);
+    }
+    for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+        gotoxy(3, 0);
+        printf("                               \n");
+        gotoxy(4, 0);
+        printf("                               \n");
+        gotoxy(5, 0);
+        printf("                               \n");
+    }
+    draw();
 }

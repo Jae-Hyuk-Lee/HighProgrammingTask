@@ -185,7 +185,7 @@ void Print_Mugunghwa(int* firstTick, int *count, bool *moveType, int *deadPlayer
             {
                 if (pmove[i] == true)
                 {
-                    player[i] = false;
+                    player[i].is_alive = false;
                     back_buf[px[i]][py[i]] = ' ';
                 }
             }
@@ -343,7 +343,7 @@ void playerPointCheck()
 
         else
         {
-            player[i] = false;
+            player[i].is_alive = false;
             back_buf[px[i]][py[i]] = ' ';
         }
 
