@@ -25,6 +25,7 @@
     <ClCompile Include="..\keyin.c" />
     <ClCompile Include="..\mugunghwa.c" />
     <ClCompile Include="..\sample.c" />
+    <ClCompile Include="nightGame.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\canvas.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="..\juldarigi.h" />
     <ClInclude Include="..\keyin.h" />
     <ClInclude Include="..\mugunghwa.h" />
+    <ClInclude Include="nightGame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jjuggumi.dat" />
