@@ -16,16 +16,44 @@ int randint(int low, int high) {
 }
 
 int jjuggumi_init(void) {
-	srand((unsigned int)time(NULL));
+    srand((unsigned int)time(NULL));
+    FILE* fp;
+    fopen_s(&fp, "jjuggumi.dat", "r");
+    if (fp == NULL) {
+        return -1; // -1 리턴하면 메인함수에서 처리하고 종료
+    }
 
-	printf("플레이어 수: ");
-	scanf_s("%d", &n_player);
+    // 플레이어 데이터 load
+    fscanf_s(fp, "%d", &n_player);
+    printf("%d", n_player);
+    for (int i = 0; i < n_player; i++) {
+        // 아직 안 배운 문법(구조체 포인터, 간접참조연산자)
+        PLAYER* p = &player[i];
+        // 파일에서 각 스탯 최댓값 읽기
+        fscanf_s(fp, "%s%d%d",
+            p->name, (unsigned int)sizeof(p->name),
+            &(p->intel), &(p->str));
+        p->id = i;
+        p->stamina = 100; // 100%
+        // 현재 상태
+        p->is_alive = true;
+        p->hasitem = false;
+        p->is_dead = true;
+    }
 
-	n_alive = n_player;
-	for (int i = 0; i < n_player; i++) {
-		player[i] = true;
-	}
-	return 0;
+    // 아이템 데이터 load
+    fscanf_s(fp, "%d", &n_item);
+    for (int i = 0; i < n_item; i++) {
+        fscanf_s(fp, "%s%d%d%d",
+            item[i].name, (unsigned int)sizeof(item[i].name),
+            &(item[i].intel_buf),
+            &(item[i].str_buf),
+            &(item[i].stamina_buf));
+    }
+    fclose(fp);
+    return 0;
+
+
 }
 
 void intro1() {
@@ -98,8 +126,8 @@ void ending2() {
 	int winner = -1;
 
 	for (int i = 0; i < n_player; i++)
-		if (player[i])
-			winner = player[i];
+		if (player[i].is_alive)
+			winner = player[i].id;
 	system("cls");
 
 	printf("=========================================================================\n\n");
@@ -114,9 +142,9 @@ void ending2() {
 void ending3() {
 	system("cls");
 	printf("=========================================================================\n\n");
-	printf("우승자를 가리지 못했습니다.\n생존자는 ");
+	printf("제한시간이 다 되었습니다.\n생존자는 ");
 	for (int i = 0; i < n_player; i++) {
-		if (player[i]) {
+		if (player[i].is_alive) {
 			printf("%d번 ", i);
 			Sleep(1000);
 		}
@@ -126,8 +154,36 @@ void ending3() {
 	Sleep(3000);
 }
 
+
+void ending4() {
+    system("cls");
+    printf("=========================================================================\n\n");
+    printf("게임이 끝났습니다.\n생존자는 ");
+    for (int i = 0; i < n_player; i++) {
+        if (player[i].is_dead) {
+            player[i].is_alive = true;
+            
+            printf("%d번 ", i);
+            Sleep(1000);
+        }
+    }
+    printf("입니다.\n\n");
+    printf("=========================================================================\n");
+    Sleep(3000);
+}
+
 void ending() {
-	if (n_alive == 1) {
+    int count = 0;
+    
+    for (int i = 0; i < n_player; i++)
+    {
+        if (player[i].is_alive == true)
+        {
+            count++;
+        }
+    }
+
+	if (count == 1) {
 		ending1();
 		ending2();
 	}
@@ -138,11 +194,11 @@ void ending() {
 
 int main(void) {
 	jjuggumi_init();
+	//sample();
 	intro();
-	sample();
 	//mugunghwa();
 	//nightgame();
-	//juldarigi();
+	juldarigi();
 	//jebi();
 	ending();
 	return 0;

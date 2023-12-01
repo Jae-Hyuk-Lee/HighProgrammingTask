@@ -18,7 +18,7 @@ void gotoxy(int row, int col) {
 // row행, col열에 ch 출력
 void printxy(char ch, int row, int col) {
 	gotoxy(row, col);
-	printf("%c", ch);
+    printf("%c", ch);
 }
 
 void map_init(int n_row, int n_col) {
@@ -31,7 +31,7 @@ void map_init(int n_row, int n_col) {
 
 	N_ROW = n_row;
 	N_COL = n_col;
-	for (int i = 0; i < N_ROW; i++) {
+	for (int i = 0; i < (N_ROW -1); i++) {
 		// 대입문 이렇게 쓸 수 있는데 일부러 안 가르쳐줬음
 		back_buf[i][0] = back_buf[i][N_COL - 1] = '#';
 
@@ -70,34 +70,70 @@ void draw(void) {
 }
 
 void print_status(void) {
-	printf("no. of players left: %d\n", n_alive);
+    int count = 0;
+
+    for (int i = 0; i < n_player; i++)
+    {
+        if (player[i].is_alive == true)
+        {
+            count++;
+        }
+    }
+
+	printf("no. of players left: %d\n", count);
 	for (int p = 0; p < n_player; p++) {
-		printf("player %2d: %5s\n", p, player[p] ? "alive" : "DEAD");
+		printf("player %2d: %5s\n", p, player[p].is_alive ? "alive" : "DEAD");
 	}
 }
 
-void dialog(char message[]) {
-	char msg[11];
+void dialog(char message[], const int messageSize) {
+    char msg[60] = {0};
 
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i != messageSize; i++)
 		msg[i] = message[i];
 
 	for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
 		gotoxy(4, 4);
-		printf("****************\n");
+		printf("******************************\n");
 		gotoxy(5, 4);
 		printf("*%d %s *\n", i, msg);
 		gotoxy(6, 4);
-		printf("****************");
+		printf("******************************");
 		Sleep(1000);
 	}
 	for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
 		gotoxy(4, 4);
-		printf("                \n");
+		printf("                               \n");
 		gotoxy(5, 4);
-		printf("                \n");
+		printf("                               \n");
 		gotoxy(6, 4);
-		printf("                \n");
+		printf("                               \n");
 	}
 	draw();
+}
+
+void dialog2(char message[], const int messageSize) {
+    char msg[60] = { 0 };
+
+    for (int i = 0; i != messageSize; i++)
+        msg[i] = message[i];
+
+    for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+        gotoxy(3, 0);
+        printf("******************************\n");
+        gotoxy(4, 0);
+        printf("*%d %s *\n", i, msg);
+        gotoxy(5, 0);
+        printf("******************************");
+        Sleep(1000);
+    }
+    for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+        gotoxy(3, 0);
+        printf("                               \n");
+        gotoxy(4, 0);
+        printf("                               \n");
+        gotoxy(5, 0);
+        printf("                               \n");
+    }
+    draw();
 }

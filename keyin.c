@@ -6,12 +6,17 @@
 bool is_valid(key_t key) {
 	// keyin.h에 있는 목록과 똑같이 맞춰야함(K_UNDEFINED 제외)
 	static key_t key_list[] = {
+        K_ARROW,
 		K_UP,
 		K_DOWN,
 		K_LEFT,
 		K_RIGHT,
 		K_QUIT,
-		K_DIALOG
+		K_DIALOG,
+        K_LEFTPULL,
+        K_RIGHTPULL,
+        K_LEFTLiEDOWN,
+        K_RIGHTLiEDOWN
 	};
 
 	for (int i = 0; i < N_KEY; i++) {
@@ -19,7 +24,9 @@ bool is_valid(key_t key) {
 			return true;
 		}
 	}
+
 	return false;
+
 }
 
 // 키보드에서 입력 받은 키가 무슨 키인지 구분해서 리턴
@@ -38,5 +45,5 @@ key_t get_key(void) {
 	}
 	else {
 		return K_UNDEFINED;
-	}
+	}	
 }
