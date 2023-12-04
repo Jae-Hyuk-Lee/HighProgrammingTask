@@ -1,12 +1,8 @@
 #ifndef _KEYIN_H_
 #define _KEYIN_H_
 
-// ÀÔ·Â ¹Þ´Â Å° Á¾·ù
-// Å°¸¦ Ãß°¡/¼öÁ¤ÇÒ °æ¿ì N_KEY¿Í,
-// keyin.c:is_valid():key_list[]µµ ÇÔ²² ¼öÁ¤ÇØ¾ß ÇÔ
-#define N_KEY		7  // K_UNDEFINED ¸¦ »« Å° Á¾·ù
+#define N_KEY		12  // K_UNDEFINED ï¿½ï¿½ ï¿½ï¿½ Å° ï¿½ï¿½ï¿½ï¿½
 
-// Âü°í: #define ´ë½Å enum ±¸¹®À¸·Îµµ ±¸Çö °¡´É
 #define K_ARROW		224
 #define K_UP		72
 #define K_DOWN		80
@@ -15,6 +11,10 @@
 #define K_QUIT		'q'
 #define K_DIALOG	'd'
 #define K_SELECT	' '
+#define K_LEFTPULL  'z'
+#define K_RIGHTPULL	'/'
+#define K_LEFTLiEDOWN	'x'
+#define K_RIGHTLiEDOWN	'.'
 #define K_UNDEFINED	'\0'
 
 

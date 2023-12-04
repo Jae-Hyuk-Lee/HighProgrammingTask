@@ -22,13 +22,17 @@
     <ClCompile Include="..\canvas.c" />
     <ClCompile Include="..\jebi.c" />
     <ClCompile Include="..\jjuggumi.c" />
+    <ClCompile Include="..\juldarigi.c" />
     <ClCompile Include="..\keyin.c" />
+    <ClCompile Include="..\mugunghwa.c" />
     <ClCompile Include="..\sample.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\canvas.h" />
     <ClInclude Include="..\jjuggumi.h" />
+    <ClInclude Include="..\juldarigi.h" />
     <ClInclude Include="..\keyin.h" />
+    <ClInclude Include="..\mugunghwa.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jjuggumi.dat" />

@@ -13,22 +13,22 @@ int CURRENT_MAP_SIZE_COL;
 void draw(void);
 void print_status(void);
 
-// (zero-base) rowÇà, col¿­·Î Ä¿¼­ ÀÌµ¿
+// (zero-base) rowï¿½ï¿½, colï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ ï¿½Ìµï¿½
 void gotoxy(int row, int col) {
 	COORD pos = { col,row };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-// rowÇà, col¿­¿¡ ch Ãâ·Â
+// rowï¿½ï¿½, colï¿½ï¿½ï¿½ï¿½ ch ï¿½ï¿½ï¿½
 void printxy(char ch, int row, int col) {
 	gotoxy(row, col);
-	printf("%c", ch);
+    printf("%c", ch);
 }
 
 void map_init(int n_row, int n_col) {
 	CURRENT_MAP_SIZE_ROW = n_row;
 	CURRENT_MAP_SIZE_COL = n_col;
-	// µÎ ¹öÆÛ¸¦¸¦ ¿ÏÀüÈ÷ ºñ¿ì±â
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½Û¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	for (int i = 0; i < ROW_MAX; i++) {
 		for (int j = 0; j < COL_MAX; j++) {
 			back_buf[i][j] = front_buf[i][j] = ' ';
@@ -37,8 +37,8 @@ void map_init(int n_row, int n_col) {
 
 	N_ROW = n_row;
 	N_COL = n_col;
-	for (int i = 0; i < N_ROW; i++) {
-		// ´ëÀÔ¹® ÀÌ·¸°Ô ¾µ ¼ö ÀÖ´Âµ¥ ÀÏºÎ·¯ ¾È °¡¸£ÃÄÁáÀ½
+	for (int i = 0; i < (N_ROW -1); i++) {
+		// ï¿½ï¿½ï¿½Ô¹ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´Âµï¿½ ï¿½ÏºÎ·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		back_buf[i][0] = back_buf[i][N_COL - 1] = '#';
 
 		for (int j = 1; j < N_COL - 1; j++) {
@@ -47,7 +47,7 @@ void map_init(int n_row, int n_col) {
 	}
 }
 
-// back_buf[row][col]ÀÌ ÀÌµ¿ÇÒ ¼ö ÀÖ´Â ÀÚ¸®ÀÎÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+// back_buf[row][col]ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 bool placable(int row, int col) {
 	if (row < 0 || row >= N_ROW ||
 		col < 0 || col >= N_COL ||
@@ -57,10 +57,10 @@ bool placable(int row, int col) {
 	return true;
 }
 
-// »ó´Ü¿¡ ¸ÊÀ», ÇÏ´Ü¿¡´Â ÇöÀç »óÅÂ¸¦ Ãâ·Â
+// ï¿½ï¿½Ü¿ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ï´Ü¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½
 void display(void) {
 	draw();
-	gotoxy(N_ROW + 3, 0);  // Ãß°¡·Î Ç¥½ÃÇÒ Á¤º¸°¡ ÀÖÀ¸¸é ¸Ê°ú »óÅÂÃ¢ »çÀÌÀÇ ºó °ø°£¿¡ Ãâ·Â
+	gotoxy(N_ROW + 3, 0);  // ï¿½ß°ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	print_status();
 }
 
@@ -76,47 +76,70 @@ void draw(void) {
 }
 
 void print_status(void) {
-	printf("no. of players left: %d\n", n_alive);
+    int count = 0;
+
+    for (int i = 0; i < n_player; i++)
+    {
+        if (player[i].is_alive == true)
+        {
+            count++;
+        }
+    }
+
+	printf("no. of players left: %d\n", count);
 	for (int p = 0; p < n_player; p++) {
-		printf("player %2d: %5s\n", p, player[p] ? "alive" : "DEAD");		
+		printf("player %2d: %5s\n", p, player[p].is_alive ? "alive" : "DEAD");
 	}
 }
-// dialog("¸Þ¼¼Áö");
-void dialog(char message[]) {
-	int mlength = strlen(message) + 6;
-	int n = DIALOG_DURATION_SEC;
-	//´ÙÀÌ¾ó·Î±× ÅØ½ºÆ® Ãâ·Â ±âÁØÁ¡
-	int dialog_col = CURRENT_MAP_SIZE_ROW/5;
-	int dialog_row = 3; 
 
-	while (1) {
-		if (n==0) {
-			system("cls");
+void dialog(char message[], const int messageSize) {
+    char msg[60] = {0};
 
-			//¸Ê º¹±¸ back_buf »ç¿ë
-			for (int row = 0; row < N_ROW; row++) {
-				for (int col = 0; col < N_COL; col++) {
-					printxy(back_buf[row][col], row, col);
-				}
-			}
-			break;
-		}
-		else {
+	for (int i = 0; i != messageSize; i++)
+		msg[i] = message[i];
 
-			gotoxy(dialog_col , dialog_row);
-			for (int i = 0; i < mlength; i++) {
-				printf("*");
-			}
-			gotoxy(dialog_col+1, dialog_row);
-			printf("* %d %s *",n, message);
-			gotoxy(dialog_col+2, dialog_row);
-			for (int i = 0; i < mlength; i++) {
-				printf("*");
-			}
-		}
-		
+	for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+		gotoxy(4, 4);
+		printf("******************************\n");
+		gotoxy(5, 4);
+		printf("*%d %s *\n", i, msg);
+		gotoxy(6, 4);
+		printf("******************************");
 		Sleep(1000);
-		n -= 1;
-		
 	}
+	for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+		gotoxy(4, 4);
+		printf("                               \n");
+		gotoxy(5, 4);
+		printf("                               \n");
+		gotoxy(6, 4);
+		printf("                               \n");
+	}
+	draw();
+}
+
+void dialog2(char message[], const int messageSize) {
+    char msg[60] = { 0 };
+
+    for (int i = 0; i != messageSize; i++)
+        msg[i] = message[i];
+
+    for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+        gotoxy(3, 0);
+        printf("******************************\n");
+        gotoxy(4, 0);
+        printf("*%d %s *\n", i, msg);
+        gotoxy(5, 0);
+        printf("******************************");
+        Sleep(1000);
+    }
+    for (int i = DIALOG_DURATION_SEC; i > 0; i--) {
+        gotoxy(3, 0);
+        printf("                               \n");
+        gotoxy(4, 0);
+        printf("                               \n");
+        gotoxy(5, 0);
+        printf("                               \n");
+    }
+    draw();
 }
