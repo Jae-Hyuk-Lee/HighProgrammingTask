@@ -1,6 +1,6 @@
-﻿  jebi.c
-  jjuggumi.c
-C:\Users\PC\Documents\GitHub\HighProgrammingTask\jjuggumi.c(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Users\PC\Documents\GitHub\HighProgrammingTask\jjuggumi.c(19,7): warning C4101: 'msg' :참조되지 않은 지역 변수입니다.
+﻿  nightGame.c
+C:\Users\배윤혁\Documents\GitHub\HighProgrammingTask\nightGame.h(43,10): warning C4013: 'time'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\배윤혁\Documents\GitHub\HighProgrammingTask\nightGame.h(181,4): warning C4013: '_getche'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  sample.c
   코드를 생성하고 있습니다...
-  jjuggumi.vcxproj -> C:\Users\PC\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
+  jjuggumi.vcxproj -> C:\Users\배윤혁\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
