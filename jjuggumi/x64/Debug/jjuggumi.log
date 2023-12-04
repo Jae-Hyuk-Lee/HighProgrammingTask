@@ -1,5 +1,0 @@
-﻿  juldarigi.c
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\juldarigi.c(38,13): warning C4013: 'dialog2'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\juldarigi.c(115,17): warning C4013: 'ending4'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\juldarigi.c(341,5): warning C4013: 'draw'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-  jjuggumi.vcxproj -> C:\Users\이재혁\OneDrive\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe

@@ -27,6 +27,7 @@
     <ClCompile Include="..\sample.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="..\jebi.c">
     <ClCompile Include="..\mugunghwa.c">
       <Filter>소스 파일</Filter>
     </ClCompile>

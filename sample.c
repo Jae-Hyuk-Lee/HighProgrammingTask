@@ -7,16 +7,19 @@
 #define DIR_DOWN	1
 #define DIR_LEFT	2
 #define DIR_RIGHT	3
-
 void sample_init(void);
 void move_manual(key_t key);
 void move_random(int i, int dir);
 void move_tail(int i, int nx, int ny);
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
+int map_x = 40;
+int map_y = 15;
+
 
 void sample_init(void) {
-	map_init(15, 40);
+
+	map_init(map_y, map_x);
 	int x, y;
 	for (int i = 0; i < n_player; i++) {
 		// 같은 자리가 나오면 다시 생성
@@ -85,7 +88,6 @@ void move_tail(int player, int nx, int ny) {
 
 void sample(void) {
 	sample_init();
-
 	system("cls");
 	display();
 	while (1) {
@@ -93,11 +95,16 @@ void sample(void) {
 		key_t key = get_key();
 		if (key == K_QUIT) {
 			break;
+		
+		}//D키를 누르면 다이얼로그 함수 호출
+		else if (key == K_DIALOG) {
+			dialog("메세지메세지메세지메세지메세지메세지메세지");
 		}
 		else if (key == K_DIALOG) {
 			dialog("sec left.", 10);
 		}
 		else if (key != K_UNDEFINED) {
+			
 			move_manual(key);
 		}
 

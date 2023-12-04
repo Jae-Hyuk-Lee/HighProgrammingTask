@@ -3,26 +3,32 @@
 #include <Windows.h>
 #include "jjuggumi.h"
 #include "canvas.h"
+#include <Windows.h>
 
-#define DIALOG_DURATION_SEC		4
+
+#define DIALOG_DURATION_SEC 1
+int CURRENT_MAP_SIZE_ROW;
+int CURRENT_MAP_SIZE_COL;
 
 void draw(void);
 void print_status(void);
 
-// (zero-base) rowÇà, col¿­·Î Ä¿¼­ ÀÌµ¿
+// (zero-base) rowï¿½ï¿½, colï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ ï¿½Ìµï¿½
 void gotoxy(int row, int col) {
 	COORD pos = { col,row };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-// rowÇà, col¿­¿¡ ch Ãâ·Â
+// rowï¿½ï¿½, colï¿½ï¿½ï¿½ï¿½ ch ï¿½ï¿½ï¿½
 void printxy(char ch, int row, int col) {
 	gotoxy(row, col);
     printf("%c", ch);
 }
 
 void map_init(int n_row, int n_col) {
-	// µÎ ¹öÆÛ¸¦¸¦ ¿ÏÀüÈ÷ ºñ¿ì±â
+	CURRENT_MAP_SIZE_ROW = n_row;
+	CURRENT_MAP_SIZE_COL = n_col;
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½Û¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	for (int i = 0; i < ROW_MAX; i++) {
 		for (int j = 0; j < COL_MAX; j++) {
 			back_buf[i][j] = front_buf[i][j] = ' ';
@@ -32,7 +38,7 @@ void map_init(int n_row, int n_col) {
 	N_ROW = n_row;
 	N_COL = n_col;
 	for (int i = 0; i < (N_ROW -1); i++) {
-		// ´ëÀÔ¹® ÀÌ·¸°Ô ¾µ ¼ö ÀÖ´Âµ¥ ÀÏºÎ·¯ ¾È °¡¸£ÃÄÁáÀ½
+		// ï¿½ï¿½ï¿½Ô¹ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´Âµï¿½ ï¿½ÏºÎ·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		back_buf[i][0] = back_buf[i][N_COL - 1] = '#';
 
 		for (int j = 1; j < N_COL - 1; j++) {
@@ -41,7 +47,7 @@ void map_init(int n_row, int n_col) {
 	}
 }
 
-// back_buf[row][col]ÀÌ ÀÌµ¿ÇÒ ¼ö ÀÖ´Â ÀÚ¸®ÀÎÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+// back_buf[row][col]ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 bool placable(int row, int col) {
 	if (row < 0 || row >= N_ROW ||
 		col < 0 || col >= N_COL ||
@@ -51,10 +57,10 @@ bool placable(int row, int col) {
 	return true;
 }
 
-// »ó´Ü¿¡ ¸ÊÀ», ÇÏ´Ü¿¡´Â ÇöÀç »óÅÂ¸¦ Ãâ·Â
+// ï¿½ï¿½Ü¿ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ï´Ü¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½
 void display(void) {
 	draw();
-	gotoxy(N_ROW + 4, 0);  // Ãß°¡·Î Ç¥½ÃÇÒ Á¤º¸°¡ ÀÖÀ¸¸é ¸Ê°ú »óÅÂÃ¢ »çÀÌÀÇ ºó °ø°£¿¡ Ãâ·Â
+	gotoxy(N_ROW + 3, 0);  // ï¿½ß°ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	print_status();
 }
 
