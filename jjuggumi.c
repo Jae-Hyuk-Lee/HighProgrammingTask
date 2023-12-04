@@ -198,9 +198,9 @@ int main(void) {
 	//sample();
 	intro();
 	mugunghwa();
-	//nightgame();
+	nightgame();
 	juldarigi();
-	jebi();
+	//jebi();
 	ending();
 	return 0;
 }

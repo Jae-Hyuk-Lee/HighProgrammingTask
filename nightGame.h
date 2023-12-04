@@ -59,8 +59,6 @@ void nightGameInit() {
 		map[playerPos[i][1]][playerPos[i][0]] = n_item + 1 + i;
 	}
 
-	n_alive = n_player;
-
 	// 아이템 초기 위치 설정
 	for (int i = 0; i < n_item; i++) {
 		
