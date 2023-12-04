@@ -1,0 +1,21 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x64" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../PokerDefense/Assets/Script/SpecialAbility/E_SpecialAbilityType.cs">
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="jjuggumi" expanded="True">
+            <Node name="jjuggumi" expanded="True">
+              <Node name="canvas.c" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>
