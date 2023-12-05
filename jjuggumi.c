@@ -197,8 +197,8 @@ int main(void) {
 	jjuggumi_init();
 	//sample();
 	intro();
-	//mugunghwa();
-	//nightgame();
+	mugunghwa();
+	nightgame();
 	juldarigi();
 	jebi();
 	ending();

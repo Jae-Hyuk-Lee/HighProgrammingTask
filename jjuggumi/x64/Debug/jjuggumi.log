@@ -1,4 +1,6 @@
-﻿  jebi.c
-C:\Users\PC\Documents\GitHub\HighProgrammingTask\jebi.c(191,24): warning C4267: '함수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\PC\Documents\GitHub\HighProgrammingTask\jebi.c(200,24): warning C4267: '함수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  jjuggumi.vcxproj -> C:\Users\PC\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
+﻿  nightGame.c
+C:\Users\배윤혁\Documents\GitHub\HighProgrammingTask\nightGame.h(43,10): warning C4013: 'time'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\배윤혁\Documents\GitHub\HighProgrammingTask\nightGame.h(181,4): warning C4013: '_getche'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  sample.c
+  코드를 생성하고 있습니다...
+  jjuggumi.vcxproj -> C:\Users\배윤혁\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
