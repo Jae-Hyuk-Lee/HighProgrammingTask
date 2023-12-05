@@ -364,3 +364,9 @@ void print_status_juldarigi()
             printf("player %2d: %5s\n", p, "DEAD");
     }
 }
+
+void set_is_alive() {
+    for (int i = 0; i < n_player; i++) {
+        player[i].is_alive = !player[i].is_dead;
+    }
+}

@@ -196,10 +196,11 @@ void ending() {
 int main(void) {
 	jjuggumi_init();
 	//sample();
-	intro();
-	mugunghwa();
-	nightgame();
+	//intro();
+	//mugunghwa();
+	//nightgame();
 	juldarigi();
+    set_is_alive();
 	jebi();
 	ending();
 	return 0;
