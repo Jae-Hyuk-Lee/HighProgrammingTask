@@ -200,7 +200,7 @@ int main(void) {
 	mugunghwa();
 	nightgame();
 	juldarigi();
-	//jebi();
+	jebi();
 	ending();
 	return 0;
 }
