@@ -225,6 +225,7 @@ void jebi() {
             n_alive++;
         }
     }
+   
 
     n_jebi_alive = n_alive;
     int cur_x = 3;
