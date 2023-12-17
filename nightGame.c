@@ -7,10 +7,11 @@ void nightgame() {
 	nightGameInit();
 
     int tick = 0;
-
+    int gametick = 0;
 	while (1) {
 
         tick += 1;
+        gametick += 1;
 
 		printNightGameMap();
 
@@ -36,6 +37,10 @@ void nightgame() {
 
         Sleep(1000 / 20);
 
+        if (gametick == 300)
+        {
+            return; 
+        }
 	}
 
 }

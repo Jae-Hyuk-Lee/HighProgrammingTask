@@ -1,1 +1,4 @@
-﻿  jjuggumi.vcxproj -> C:\Users\PC\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe
+﻿  nightGame.c
+C:\Users\user\Documents\GitHub\HighProgrammingTask\nightGame.h(43,14): warning C4013: 'time'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\user\Documents\GitHub\HighProgrammingTask\nightGame.h(181,11): warning C4013: '_getche'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  jjuggumi.vcxproj -> C:\Users\user\Documents\GitHub\HighProgrammingTask\x64\Debug\jjuggumi.exe

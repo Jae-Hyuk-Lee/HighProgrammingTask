@@ -74,6 +74,7 @@ void mugunghwa(void)
         {
             //¿µÈñ ¿·¿¡ ¾ø´Â ¾ÖµéÀº ´Ù Á×À½
             playerPointCheck();
+            ending();
             return;
         }
 
@@ -89,6 +90,7 @@ void mugunghwa(void)
 
         if (count == 1) {
             playerPointCheck();
+            ending();
             return;
         }
     }
